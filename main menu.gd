@@ -13,8 +13,16 @@ func _process(delta):
 
 func _on_mulai_btn_pressed():
 	print("Loading another scene...")
-	get_tree().change_scene_to_file("res://Scene2.tscn")
+	$btn_transition.play("btn_transition")
 
 func _on_exit_btn_pressed():
 	print("Exiting the program...")
 	get_tree().quit()  # Exit the game
+
+
+func _on_easy_btn_pressed():
+	get_tree().change_scene_to_file("res://Easy.tscn")
+
+
+func _on_hard_btn_pressed():
+	get_tree().change_scene_to_file("res://Hard.tscn")
