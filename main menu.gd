@@ -21,8 +21,16 @@ func _on_exit_btn_pressed():
 
 
 func _on_easy_btn_pressed():
-	get_tree().change_scene_to_file("res://Easy.tscn")
+	var scene_path = "res://Scene/Easy.tscn"
+	if ResourceLoader.exists(scene_path):
+		get_tree().change_scene_to_file(scene_path)
+	else:
+		print("Scene not found or not imported: ", scene_path)
 
 
 func _on_hard_btn_pressed():
-	get_tree().change_scene_to_file("res://Hard.tscn")
+	var scene_path = "res://Scene/Hard.tscn"
+	if ResourceLoader.exists(scene_path):
+		get_tree().change_scene_to_file(scene_path)
+	else:
+		print("Scene not found or not imported: ", scene_path)
