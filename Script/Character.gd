@@ -6,5 +6,4 @@ func _ready():
 	pass # Replace with function body.
 
 func set_character(character_path : String):
-	$sprite.texture = load(character_path)
-
+	$Sprite2D.texture = load(character_path)
