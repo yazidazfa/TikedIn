@@ -13,19 +13,36 @@ var pesanan_dan_kode = {
 	"Lempar Gelang" : "0011"
 }
 var code_label : Label
+var score_label : Label
 var timer : Timer 
+var score = 0  # Add this line to track the score
+var game_timer : Timer  # Timer for the overall game duration
+var time_left_label : Label  # Label to display the remaining time
 
 var anim_player : AnimationPlayer
 var kode_pesanan_saat_ini = ""
 var input_player = ""
+var is_animating = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	anim_player = $TextureRect/CustomerContainer/CustomerInstance.get_node("AnimationPlayer")
 	anim_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
-	panggil_pelanggan_baru()
+	score_label = $TextureRect/ScoreLabel
 	code_label = $TextureRect/Input_Number
+	update_score_label()
+	panggil_pelanggan_baru()
+	
+	game_timer = $TextureRect/GameTimer  # Assuming you have added a Timer node named GameTimer
+	game_timer.set_wait_time(120)  # Set the game duration to 2 minutes (120 seconds)
+	game_timer.connect("timeout", Callable(self, "_on_game_timer_timeout"))
+	game_timer.start()
 
+	time_left_label = $TextureRect/TimeLeftLabel  # Assuming you have a Label node to display the remaining time
+	time_left_label.text = "Time Left: 2:00"  # Initialize the time display
+	
+	$TextureRect/CustomerTimer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	
 func panggil_pelanggan_baru():
 	var karakter_acak = karakter_pelanggan[randi() % karakter_pelanggan.size()]
 	var pesanan_acak = pesanan_dan_kode.keys()[randi() % pesanan_dan_kode.size()]
@@ -38,19 +55,24 @@ func panggil_pelanggan_baru():
 	$TextureRect/OrderLabel.text = pesanan_acak + " (" + kode_pesanan_saat_ini + ")" 
 
 	input_player = ""  # Reset player input code
-	$TextureRect/Timer.start(10)  # Set waktu tunggu pelanggan
+	$TextureRect/CustomerTimer.start(10)  # Set waktu tunggu pelanggan
 
 func _on_btn_submit_pressed():
-	proses_pesanan(input_player)
+	if not is_animating:
+		proses_pesanan(input_player)
 
 func proses_pesanan(barang_diberikan):
 	if input_player == kode_pesanan_saat_ini:
 		print("Pesanan benar! Kode input: ", barang_diberikan)
+		score += 100
+		update_score_label()  # Update the score displa
 		anim_player.play("Move out")
+		is_animating = true
 		# Tambahkan logika untuk menangani pesanan yang benar di sini
 	else:
 		print("Pesanan salah! Kode input: ", barang_diberikan)
 		anim_player.play("Move out")
+		is_animating = true
 		# Tambahkan logika untuk menangani pesanan yang salah di sini
 	
 	input_player = ""
@@ -58,29 +80,52 @@ func proses_pesanan(barang_diberikan):
 
 func _on_animation_finished(anim_name):
 	if anim_name == "Move out":
+		is_animating = false
 		panggil_pelanggan_baru()
 		
 func _on_btn_1_pressed():
-	if input_player.length() < 4:
+	if not is_animating and input_player.length() < 4:
 		input_player += "1"
 	print("Player input code: ", input_player)
 	update_input_code_label()
 
 func _on_btn_0_pressed():
-	if input_player.length() < 4:
+	if not is_animating and input_player.length() < 4:
 		input_player += "0"
 	print("Player input code: ", input_player)
 	update_input_code_label()
 
 func update_input_code_label():
 	# Update the Label text to display player_input_code
-	code_label.text = input_player
+	code_label.text = input_player	
 
 func _on_timer_timeout():
 	print("Waktu tunggu pelanggan habis!")
-	panggil_pelanggan_baru()
+	is_animating = true
+	anim_player.play("Move out")	
 
 func _on_backspace_pressed():
-	if input_player.length() > 0:
+	if not is_animating and input_player.length() > 0:
 		input_player = input_player.left(input_player.length() - 1)
 		update_input_code_label()
+
+func update_score_label():
+	score_label.text = "Score: " + str(score)
+	
+func _on_game_timer_timeout():
+	print("Game Over! Time's up!")
+	# Implement the game over logic here, such as displaying a game over screen or transitioning to a different scene
+	# For example, you might want to call a function to show the game over screen
+	show_game_over_screen()
+
+func show_game_over_screen():
+	# Show the game over screen here
+	# For example, you might want to change to a game over scene
+	get_tree().change_scene_to_file("res://Scene/main menu.tscn")
+
+func _process(delta):
+	# Update the time left label every frame
+	var time_left = int(game_timer.get_time_left())
+	var minutes = time_left / 60
+	var seconds = time_left % 60
+	time_left_label.text = "Time Left: %d:%02d" % [minutes, seconds]
