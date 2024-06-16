@@ -23,6 +23,9 @@ var anim_player : AnimationPlayer
 var kode_pesanan_saat_ini = ""
 var input_player = ""
 var is_animating = false
+
+var new_anim_player : AnimationPlayer
+var sprite2d : Sprite2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -42,6 +45,10 @@ func _ready():
 	time_left_label.text = "Time Left: 2:00"  # Initialize the time display
 	
 	$TextureRect/CustomerTimer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	
+	new_anim_player = $TextureRect/AnimationPlayer
+	sprite2d = $TextureRect/KangTiket
+	new_anim_player.play("kang tiket muncul")
 	
 func panggil_pelanggan_baru():
 	var karakter_acak = karakter_pelanggan[randi() % karakter_pelanggan.size()]
