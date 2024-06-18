@@ -35,9 +35,9 @@ func _on_transition_animation_finished(animation_name: String):
 	var scene_path = ""
 	if animation_name == "change_scene":
 		if last_button_pressed == "easy":
-			scene_path = "res://Scene/Easy.tscn"
+			scene_path = "res://Scene/Easy1.tscn"
 		elif last_button_pressed == "hard":
-			scene_path = "res://Scene/Hard.tscn"
+			scene_path = "res://Scene/Hard1.tscn"
 		else:
 			print("Unknown last button pressed:", last_button_pressed)
 			return
