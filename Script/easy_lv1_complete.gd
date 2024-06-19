@@ -7,7 +7,5 @@ func _ready():
 	score_easy1_label = $TextureRect/Score1Label
 	score_easy1_label.text = "Total Score: " + str(GlobalScore.score_easy1)
 
-
-
-#func _on_button_pressed():
-	#get_tree().change_scene_to_file(scene_path)
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Scene/Guide2.tscn")
