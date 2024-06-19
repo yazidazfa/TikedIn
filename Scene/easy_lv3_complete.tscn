@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://do3kfyl45achd"]
+
+[ext_resource type="Script" path="res://Script/easy_lv3_complete.gd" id="1_kbq46"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pp4m5"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_hhqe1"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_enw4o"]
+font_size = 26
+
+[node name="Node" type="Node"]
+script = ExtResource("1_kbq46")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_top = 185.0
+offset_right = 126.0
+offset_bottom = 224.0
+grow_horizontal = 2
+text = "Hari ke-3 Berakhir!"
+label_settings = SubResource("LabelSettings_pp4m5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score1Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_top = 258.0
+offset_right = 126.0
+offset_bottom = 297.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_hhqe1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalScore" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.5
+offset_top = 310.0
+offset_right = 230.5
+offset_bottom = 349.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_enw4o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="TextureRect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="TextureRect/Control"]
+layout_mode = 1
+offset_left = 450.0
+offset_top = 390.0
+offset_right = 702.0
+offset_bottom = 455.0
+text = "Selesai"
+
+[connection signal="pressed" from="TextureRect/Control/Button" to="." method="_on_button_pressed"]

@@ -9,12 +9,19 @@ var score_easy3 = 0
 func _ready():
 	pass # Replace with function body.
 
-func add_to_score(amount):
+func add_to_score1(amount):
 	total_score += amount
 	score_easy1 += amount
-	score_easy2 += amount
-	score_easy3 += amount
+
 	
+func add_to_score2(amount):
+	total_score += amount
+	score_easy2 += amount
+
+	
+func add_to_score3(amount):
+	total_score += amount
+	score_easy3 += amount
 	
 func reset_score():
 	total_score = 0

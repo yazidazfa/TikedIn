@@ -77,7 +77,7 @@ func panggil_pelanggan_baru():
 	input_money_label.visible = false
 	anim_player.play("Move to middle")
 
-	$TextureRect/CustomerTimer.start(10)  # Set waktu tunggu pelanggan
+	$TextureRect/CustomerTimer.start(7)  # Set waktu tunggu pelanggan
 	reset_money()
 
 func _on_animation_finished(anim_name):
@@ -99,11 +99,11 @@ func proses_pesanan(barang_diberikan):
 	var kembalian = uang_muncul - harga_pesanan
 	if input_player == kode_pesanan_saat_ini["kode"] and current_money == kembalian:
 		score += 100
-		GlobalScore.add_to_score2(100)
+		GlobalScore.add_to_score3(100)
 	else:
 		print("Pesanan salah! Kode input: ", barang_diberikan)
 		score -= 50
-		GlobalScore.add_to_score2(-50)  # Deduct from global score
+		GlobalScore.add_to_score3(-50)  # Deduct from global score
 	update_score_label()  # Update the score display
 		
 	anim_player.play("Move out")
@@ -135,12 +135,12 @@ func update_input_code_label():
 func _on_timer_timeout():
 	print("Waktu tunggu pelanggan habis!")
 	score -= 50
+	update_score_label()
 	GlobalScore.add_to_score3(-50)
 	$TextureRect/Uang.visible = false
 	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true
 	input_money_label.visible = false
-	update_score_label()
 	anim_player.play("Move out")
 
 func _on_backspace_pressed():
@@ -160,7 +160,7 @@ func _on_game_timer_timeout():
 func show_game_over_screen():
 	# Show the game over screen here
 	# For example, you might want to change to a game over scene
-	get_tree().change_scene_to_file("res://Scene/easy_lv2_complete.tscn")
+	get_tree().change_scene_to_file("res://Scene/easy_lv3_complete.tscn")
 
 func set_uang_texture(harga):
 	if is_animating:

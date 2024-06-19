@@ -44,7 +44,7 @@ func _ready():
 	panggil_pelanggan_baru()
 
 	game_timer = $TextureRect/GameTimer  # Assuming you have added a Timer node named GameTimer
-	game_timer.set_wait_time(10)  # Set the game duration to 2 minutes (120 seconds)
+	game_timer.set_wait_time(120)  # Set the game duration to 2 minutes (120 seconds)
 	game_timer.connect("timeout", Callable(self, "_on_game_timer_timeout"))
 	game_timer.start()
 
@@ -91,7 +91,7 @@ func proses_pesanan(barang_diberikan):
 	if input_player == kode_pesanan_saat_ini["kode"]:
 		print("Pesanan benar! Kode input: ", barang_diberikan)
 		score += 100
-		GlobalScore.add_to_score(100)  # Add to global score
+		GlobalScore.add_to_score1(100)  # Add to global score
 		update_score_label()  # Update the score display
 		anim_player.play("Move out")
 		$TextureRect/Uang.visible = false
@@ -101,6 +101,9 @@ func proses_pesanan(barang_diberikan):
 	else:
 		print("Pesanan salah! Kode input: ", barang_diberikan)
 		anim_player.play("Move out")
+		GlobalScore.add_to_score1(-50)
+		score -= 50
+		update_score_label()
 		$TextureRect/Uang.visible = false
 		order_label.visible = false  # Hide the OrderLabel
 		is_animating = true
@@ -127,6 +130,10 @@ func update_input_code_label():
 
 func _on_timer_timeout():
 	print("Waktu tunggu pelanggan habis!")
+	score -= 50
+	GlobalScore.add_to_score3(-50)
+	$TextureRect/Uang.visible = false
+	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true
 	anim_player.play("Move out")
 
