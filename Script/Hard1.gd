@@ -20,21 +20,17 @@ var timer: Timer
 var score = 0  # Add this line to track the score
 var game_timer: Timer  # Timer for the overall game duration
 var time_left_label: Label  # Label to display the remaining time
-var input_money_label : Label
 
 var anim_player: AnimationPlayer
 var kode_pesanan_saat_ini = ""
 var pesanan_acak = ""  # Add this line to track the current order
 var input_player = ""
-var harga_pesanan = 0
+var harga_pesanan = ""
 var is_animating = false
 
 var new_anim_player: AnimationPlayer
 var sprite2d: Sprite2D
 var order_label: Label  # Add this line to reference the OrderLabel
-
-var current_money = 0
-var uang_muncul = 0  # Variable to store the displayed money
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,7 +40,6 @@ func _ready():
 	score_label = $TextureRect/ScoreLabel
 	code_label = $TextureRect/Input_Number
 	order_label = $TextureRect/OrderLabel  # Reference the OrderLabel node
-	input_money_label = $TextureRect/InputMoney
 	update_score_label()
 	panggil_pelanggan_baru()
 
@@ -74,17 +69,14 @@ func panggil_pelanggan_baru():
 	is_animating = true
 	order_label.visible = false  # Hide the OrderLabel
 	$TextureRect/Uang.visible = false
-	input_money_label.visible = false
 	anim_player.play("Move to middle")
 
-	$TextureRect/CustomerTimer.start(7)  # Set waktu tunggu pelanggan
-	reset_money()
+	$TextureRect/CustomerTimer.start(10)  # Set waktu tunggu pelanggan
 
 func _on_animation_finished(anim_name):
 	if anim_name == "Move to middle":
 		is_animating = false
 		order_label.visible = true  # Show the OrderLabel
-		input_money_label.visible = true
 		order_label.text = pesanan_acak + " - Harga: " + str(harga_pesanan)
 		set_uang_texture(harga_pesanan)
 	elif anim_name == "Move out":
@@ -96,22 +88,26 @@ func _on_btn_submit_pressed():
 		proses_pesanan(input_player)
 
 func proses_pesanan(barang_diberikan):
-	var kembalian = uang_muncul - harga_pesanan
-	if input_player == kode_pesanan_saat_ini["kode"] and current_money == kembalian:
+	if input_player == kode_pesanan_saat_ini["kode"]:
+		print("Pesanan benar! Kode input: ", barang_diberikan)
 		score += 100
-		GlobalScore.add_to_score3(100)
+		GlobalScore.add_to_score1(100)  # Add to global score
+		update_score_label()  # Update the score display
+		anim_player.play("Move out")
+		$TextureRect/Uang.visible = false
+		order_label.visible = false  # Hide the OrderLabel
+		is_animating = true
+		# Tambahkan logika untuk menangani pesanan yang benar di sini
 	else:
 		print("Pesanan salah! Kode input: ", barang_diberikan)
+		anim_player.play("Move out")
+		GlobalScore.add_to_score1(-50)
 		score -= 50
-		GlobalScore.add_to_score3(-50)  # Deduct from global score
-	update_score_label()  # Update the score display
-		
-	anim_player.play("Move out")
-	$TextureRect/Uang.visible = false
-	order_label.visible = false  # Hide the OrderLabel
-	is_animating = true
-	input_money_label.visible = false
-	# Tambahkan logika untuk menangani pesanan yang salah di sini
+		update_score_label()
+		$TextureRect/Uang.visible = false
+		order_label.visible = false  # Hide the OrderLabel
+		is_animating = true
+		# Tambahkan logika untuk menangani pesanan yang salah di sini
 
 	input_player = ""
 	code_label.text = ""
@@ -135,12 +131,10 @@ func update_input_code_label():
 func _on_timer_timeout():
 	print("Waktu tunggu pelanggan habis!")
 	score -= 50
-	update_score_label()
-	GlobalScore.add_to_score3(-50)
+	GlobalScore.add_to_score1(-50)
 	$TextureRect/Uang.visible = false
 	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true
-	input_money_label.visible = false
 	anim_player.play("Move out")
 
 func _on_backspace_pressed():
@@ -160,42 +154,29 @@ func _on_game_timer_timeout():
 func show_game_over_screen():
 	# Show the game over screen here
 	# For example, you might want to change to a game over scene
-	get_tree().change_scene_to_file("res://Scene/hard_lv3_complete.tscn")
-
+	get_tree().change_scene_to_file("res://Scene/hard_lv1_complete.tscn")
+	
 func set_uang_texture(harga):
 	if is_animating:
 		$TextureRect/Uang.visible = false
 	else:
-		var available_denominations = [100, 50, 20, 10, 5, 2, 1]
-		var filtered_denominations = []
-		
-		for denomination in available_denominations:
-			if denomination >= harga:
-				filtered_denominations.append(denomination)
-		
-		if filtered_denominations.size() > 0:
-			var random_index = randi() % filtered_denominations.size()
-			uang_muncul = filtered_denominations[random_index]
-			
-			$TextureRect/Uang.visible = true
-			
-			match uang_muncul:
-				100:
-					$TextureRect/Uang.texture = load("res://uang/100.png")
-				50:
-					$TextureRect/Uang.texture = load("res://uang/50.png")
-				20:
-					$TextureRect/Uang.texture = load("res://uang/20.png")
-				10:
-					$TextureRect/Uang.texture = load("res://uang/10.png")
-				5:
-					$TextureRect/Uang.texture = load("res://uang/5.png")
-				2:
-					$TextureRect/Uang.texture = load("res://uang/2.png")
-				1:
-					$TextureRect/Uang.texture = load("res://uang/1.png")
-		else:
-			$TextureRect/Uang.visible = false
+		$TextureRect/Uang.visible = true
+		match harga:
+			100:
+				$TextureRect/Uang.texture = load("res://uang/100.png")
+			50:
+				$TextureRect/Uang.texture = load("res://uang/50.png")
+			20:
+				$TextureRect/Uang.texture = load("res://uang/20.png")
+			10:
+				$TextureRect/Uang.texture = load("res://uang/10.png")
+			5:
+				$TextureRect/Uang.texture = load("res://uang/5.png")
+			2:
+				$TextureRect/Uang.texture = load("res://uang/2.png")
+			1:
+				$TextureRect/Uang.texture = load("res://uang/1.png")
+		# Tambahkan case untuk nominal uang lainnya sesuai kebutuhan
 
 func _process(delta):
 	# Update the time left label every frame
@@ -203,35 +184,3 @@ func _process(delta):
 	var minutes = time_left / 60
 	var seconds = time_left % 60
 	time_left_label.text = "Time Left: %d:%02d" % [minutes, seconds]
-
-func _on_btn_money_1_pressed():
-	add_money(1)
-
-func _on_btn_money_2_pressed():
-	add_money(2)
-
-func _on_btn_money_5_pressed():
-	add_money(5)
-
-func _on_btn_money_10_pressed():
-	add_money(10)
-
-func _on_btn_money_20_pressed():
-	add_money(20)
-
-func _on_btn_money_50_pressed():
-	add_money(50)
-
-func add_money(amount: int):
-	current_money += amount
-	update_money_label()
-
-func _on_btn_reset_pressed():
-	reset_money()
-
-func reset_money():
-	current_money = 0
-	update_money_label()
-	
-func update_money_label():
-	input_money_label.text = "Kembalian: " + str(current_money)

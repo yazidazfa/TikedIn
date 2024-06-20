@@ -5,6 +5,7 @@ var last_button_pressed = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$btn_transition.connect("animation_finished", Callable(self, "_on_transition_animation_finished"))
+	GlobalScore.reset_score()
 
 func _on_mulai_btn_pressed():
 	print("Loading another scene...")
@@ -37,7 +38,7 @@ func _on_transition_animation_finished(animation_name: String):
 		if last_button_pressed == "easy":
 			scene_path = "res://Scene/Guide1.tscn"
 		elif last_button_pressed == "hard":
-			scene_path = "res://Scene/Hard1.tscn"
+			scene_path = "res://Scene/Guide1hard.tscn"
 		else:
 			print("Unknown last button pressed:", last_button_pressed)
 			return
