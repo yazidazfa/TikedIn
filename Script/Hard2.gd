@@ -140,7 +140,7 @@ func update_input_code_label():
 func _on_timer_timeout():
 	print("Waktu tunggu pelanggan habis!")
 	score -= 50
-	GlobalScore.add_to_score3(-50)
+	GlobalScore.add_to_score2(-50)
 	$TextureRect/Uang.visible = false
 	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true

@@ -139,6 +139,7 @@ func _on_timer_timeout():
 	$TextureRect/Uang.visible = false
 	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true
+	update_score_label()
 	anim_player.play("Move out")
 
 func _on_backspace_pressed():
