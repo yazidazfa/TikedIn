@@ -2,6 +2,9 @@ extends Node
 
 var karakter_pelanggan = ["res://Character/Man-1.png.png", "res://Character/bapak bapak x1 (1).png", "res://Character/yor-forger-x1.png"]
 
+@onready var audio_correct = $TextureRect/correct
+@onready var audio_wrong = $TextureRect/wrong
+
 var pesanan_dan_kode = {
 	"Roller Coaster": {"kode": "0001", "harga": 50},
 	"Rumah Hantu": {"kode": "0010", "harga": 20},
@@ -97,6 +100,7 @@ func proses_pesanan(barang_diberikan):
 		$TextureRect/Uang.visible = false
 		order_label.visible = false  # Hide the OrderLabel
 		is_animating = true
+		audio_correct.play()
 		# Tambahkan logika untuk menangani pesanan yang benar di sini
 	else:
 		print("Pesanan salah! Kode input: ", barang_diberikan)
@@ -107,6 +111,7 @@ func proses_pesanan(barang_diberikan):
 		$TextureRect/Uang.visible = false
 		order_label.visible = false  # Hide the OrderLabel
 		is_animating = true
+		audio_wrong.play()
 		# Tambahkan logika untuk menangani pesanan yang salah di sini
 
 	input_player = ""

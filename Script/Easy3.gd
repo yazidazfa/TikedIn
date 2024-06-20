@@ -1,6 +1,8 @@
 extends Node
 
 var karakter_pelanggan = ["res://Character/Man-1.png.png", "res://Character/bapak bapak x1 (1).png", "res://Character/yor-forger-x1.png"]
+@onready var audio_correct = $TextureRect/correct
+@onready var audio_wrong = $TextureRect/wrong
 
 var pesanan_dan_kode = {
 	"Roller Coaster": {"kode": "0001", "harga": 50},
@@ -100,10 +102,13 @@ func proses_pesanan(barang_diberikan):
 	if input_player == kode_pesanan_saat_ini["kode"] and current_money == kembalian:
 		score += 100
 		GlobalScore.add_to_score3(100)
+		audio_correct.play()
 	else:
 		print("Pesanan salah! Kode input: ", barang_diberikan)
 		score -= 50
 		GlobalScore.add_to_score3(-50)  # Deduct from global score
+		audio_wrong.play()
+		
 	update_score_label()  # Update the score display
 		
 	anim_player.play("Move out")

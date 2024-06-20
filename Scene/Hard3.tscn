@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://t2yijdosljkx"]
+[gd_scene load_steps=22 format=3 uid="uid://t2yijdosljkx"]
 
 [ext_resource type="Script" path="res://Script/Hard3.gd" id="1_ogvfq"]
 [ext_resource type="Texture2D" uid="uid://d4a11leryb74j" path="res://Character/abangx1 (2).png" id="2_fh1ul"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://c5q5g6oq3p3v" path="res://uang/10.png" id="7_qw00a"]
 [ext_resource type="Texture2D" uid="uid://cbw5fm0nm6xgt" path="res://uang/20.png" id="8_gbeef"]
 [ext_resource type="Texture2D" uid="uid://bg8he4yqo0gte" path="res://uang/50.png" id="9_lkq7e"]
+[ext_resource type="AudioStream" uid="uid://ji0xgow2ji2g" path="res://audio/correct-aul.mp3" id="10_osh7q"]
+[ext_resource type="AudioStream" uid="uid://j17e5jpt35rx" path="res://audio/negative_beeps-6008.mp3" id="11_58um1"]
 
 [sub_resource type="Animation" id="Animation_xy3wu"]
 length = 0.001
@@ -324,6 +326,12 @@ z_index = 1
 position = Vector2(371, 602)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("9_lkq7e")
+
+[node name="correct" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("10_osh7q")
+
+[node name="wrong" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("11_58um1")
 
 [connection signal="timeout" from="TextureRect/GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="TextureRect/CustomerTimer" to="." method="_on_timer_timeout"]

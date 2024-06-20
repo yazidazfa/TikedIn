@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgn4b5h28cswu"]
+[gd_scene load_steps=15 format=3 uid="uid://cgn4b5h28cswu"]
 
 [ext_resource type="Script" path="res://Script/Hard1.gd" id="1_4f6wc"]
 [ext_resource type="Texture2D" uid="uid://d4a11leryb74j" path="res://Character/abangx1 (2).png" id="2_f45py"]
 [ext_resource type="PackedScene" uid="uid://b4lrqmiaibjj" path="res://Scene/Character.tscn" id="3_5hcp4"]
+[ext_resource type="AudioStream" uid="uid://ji0xgow2ji2g" path="res://audio/correct-aul.mp3" id="4_6jp12"]
+[ext_resource type="AudioStream" uid="uid://j17e5jpt35rx" path="res://audio/negative_beeps-6008.mp3" id="5_20hx6"]
 
 [sub_resource type="Animation" id="Animation_xy3wu"]
 length = 0.001
@@ -213,6 +215,12 @@ offset_bottom = 119.0
 label_settings = SubResource("LabelSettings_v3j3x")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="correct" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("4_6jp12")
+
+[node name="wrong" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("5_20hx6")
 
 [connection signal="timeout" from="TextureRect/GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="TextureRect/CustomerTimer" to="." method="_on_timer_timeout"]
