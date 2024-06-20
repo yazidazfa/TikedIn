@@ -1,9 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxk03otii1f5n"]
+[gd_scene load_steps=26 format=3 uid="uid://dxk03otii1f5n"]
 
 [ext_resource type="Script" path="res://Script/Easy2.gd" id="1_4wutj"]
 [ext_resource type="Texture2D" uid="uid://d4a11leryb74j" path="res://Character/abangx1 (2).png" id="2_a3t2d"]
+[ext_resource type="Texture2D" uid="uid://dexraig1t2vr7" path="res://background/ingame/ingame 1.png" id="2_vta8q"]
+[ext_resource type="Texture2D" uid="uid://beptn4d6fayga" path="res://background/ingame/ingame 2.png" id="3_2h42m"]
 [ext_resource type="PackedScene" uid="uid://b4lrqmiaibjj" path="res://Scene/Character.tscn" id="3_0287q"]
 [ext_resource type="Texture2D" uid="uid://b1gyo0uj2lgkh" path="res://uang/1.png" id="4_aaytc"]
+[ext_resource type="Texture2D" uid="uid://612wp881a2jn" path="res://background/ingame/ingame 3.png" id="4_kpbpn"]
 [ext_resource type="Texture2D" uid="uid://cujqfmh5t2s5p" path="res://uang/2.png" id="5_1ujcd"]
 [ext_resource type="Texture2D" uid="uid://drgimc8is1itg" path="res://uang/5.png" id="6_7341a"]
 [ext_resource type="Texture2D" uid="uid://c5q5g6oq3p3v" path="res://uang/10.png" id="7_q18ao"]
@@ -11,6 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://bg8he4yqo0gte" path="res://uang/50.png" id="9_10nbe"]
 [ext_resource type="AudioStream" uid="uid://ji0xgow2ji2g" path="res://audio/correct-aul.mp3" id="10_07cpm"]
 [ext_resource type="AudioStream" uid="uid://j17e5jpt35rx" path="res://audio/negative_beeps-6008.mp3" id="11_bsmoo"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_espkt"]
+frames = 3
+frame_0/texture = ExtResource("2_vta8q")
+frame_1/texture = ExtResource("3_2h42m")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_kpbpn")
+frame_2/duration = 1.0
 
 [sub_resource type="Animation" id="Animation_xy3wu"]
 length = 0.001
@@ -51,14 +62,22 @@ _data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_34aya"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_s35py"]
-font_size = 25
-
 [sub_resource type="LabelSettings" id="LabelSettings_kwpnw"]
 font_size = 20
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_mgi74"]
 font_size = 23
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 7
+
+[sub_resource type="LabelSettings" id="LabelSettings_n4kue"]
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
 
 [sub_resource type="GDScript" id="GDScript_pc423"]
 script/source = "extends Control
@@ -88,9 +107,15 @@ func _on_btn_submit_pressed():
 
 [sub_resource type="LabelSettings" id="LabelSettings_v3j3x"]
 font_size = 23
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_g64dy"]
 font_size = 20
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
 
 [node name="Node" type="Node"]
 script = ExtResource("1_4wutj")
@@ -101,6 +126,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("AnimatedTexture_espkt")
+expand_mode = 1
 
 [node name="MoneyImage" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
@@ -124,21 +151,6 @@ texture_filter = 1
 position = Vector2(440, 320)
 scale = Vector2(0.1, 0.1)
 texture = SubResource("ImageTexture_34aya")
-
-[node name="Label" type="Label" parent="TextureRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.5
-offset_top = 126.0
-offset_right = 100.5
-offset_bottom = 217.0
-grow_horizontal = 2
-text = "Easy Mode"
-label_settings = SubResource("LabelSettings_s35py")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Input_Number" type="Label" parent="TextureRect"]
 layout_mode = 0
@@ -165,6 +177,7 @@ offset_left = 690.0
 offset_top = 280.0
 offset_right = 794.0
 offset_bottom = 340.0
+label_settings = SubResource("LabelSettings_n4kue")
 horizontal_alignment = 1
 vertical_alignment = 1
 
