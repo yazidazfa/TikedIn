@@ -147,6 +147,7 @@ func _on_timer_timeout():
 	input_money_label.visible = false
 	update_score_label()
 	anim_player.play("Move out")
+	audio_wrong.play()
 
 func _on_backspace_pressed():
 	if not is_animating and input_player.length() > 0:

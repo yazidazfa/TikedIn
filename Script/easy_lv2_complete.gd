@@ -8,4 +8,4 @@ func _ready():
 	score_easy2_label.text = "Score: " + str(GlobalScore.score_easy2)
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://Scene/Guide3Hard.tscn")
+	get_tree().change_scene_to_file("res://Scene/Guide3.tscn")

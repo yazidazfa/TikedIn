@@ -141,6 +141,7 @@ func _on_timer_timeout():
 	is_animating = true
 	update_score_label()
 	anim_player.play("Move out")
+	audio_wrong.play()
 
 func _on_backspace_pressed():
 	if not is_animating and input_player.length() > 0:

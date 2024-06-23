@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://s0u8qifj3inx"]
+
+[ext_resource type="Script" path="res://Script/intro_to_hard.gd" id="1_ti1dg"]
+[ext_resource type="VideoStream" path="res://intro/intro.ogv" id="2_7yeqp"]
+
+[node name="IntroToEasy" type="Node"]
+script = ExtResource("1_ti1dg")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_7yeqp")
+expand = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

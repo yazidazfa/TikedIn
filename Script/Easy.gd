@@ -142,6 +142,7 @@ func _on_timer_timeout():
 	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true
 	anim_player.play("Move out")
+	audio_wrong.play()
 
 func _on_backspace_pressed():
 	if not is_animating and input_player.length() > 0:

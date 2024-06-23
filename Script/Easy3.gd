@@ -87,7 +87,7 @@ func _on_animation_finished(anim_name):
 		is_animating = false
 		order_label.visible = true  # Show the OrderLabel
 		input_money_label.visible = true
-		order_label.text = pesanan_acak + " - Harga: " + str(harga_pesanan)
+		order_label.text = pesanan_acak + " (" + kode_pesanan_saat_ini["kode"] + ") - Harga: " + str(harga_pesanan)
 		set_uang_texture(harga_pesanan)
 	elif anim_name == "Move out":
 		is_animating = false
@@ -147,6 +147,7 @@ func _on_timer_timeout():
 	is_animating = true
 	input_money_label.visible = false
 	anim_player.play("Move out")
+	audio_wrong.play()
 
 func _on_backspace_pressed():
 	if not is_animating and input_player.length() > 0:
