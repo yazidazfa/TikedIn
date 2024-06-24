@@ -346,6 +346,8 @@ stream = ExtResource("10_osh7q")
 [node name="wrong" type="AudioStreamPlayer" parent="TextureRect"]
 stream = ExtResource("11_58um1")
 
+[node name="bgm" type="AudioStreamPlayer" parent="TextureRect"]
+
 [connection signal="timeout" from="TextureRect/GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="TextureRect/CustomerTimer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="TextureRect/Control/btn_money1" to="." method="_on_btn_money_1_pressed"]
@@ -359,3 +361,4 @@ stream = ExtResource("11_58um1")
 [connection signal="pressed" from="TextureRect/Control/btn_0" to="." method="_on_btn_0_pressed"]
 [connection signal="pressed" from="TextureRect/Control/btn_submit" to="." method="_on_btn_submit_pressed"]
 [connection signal="pressed" from="TextureRect/Control/backspace" to="." method="_on_backspace_pressed"]
+[connection signal="finished" from="TextureRect/bgm" to="." method="_on_bgm_finished"]

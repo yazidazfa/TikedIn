@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dno3xayr4enuk"]
+[gd_scene load_steps=20 format=3 uid="uid://dno3xayr4enuk"]
 
 [ext_resource type="Script" path="res://Script/Easy.gd" id="1_y6kgp"]
 [ext_resource type="Texture2D" uid="uid://d4a11leryb74j" path="res://Character/abangx1 (2).png" id="2_2b5ae"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://612wp881a2jn" path="res://background/ingame/ingame 3.png" id="4_smi15"]
 [ext_resource type="AudioStream" uid="uid://ji0xgow2ji2g" path="res://audio/correct-aul.mp3" id="4_ytyt1"]
 [ext_resource type="AudioStream" uid="uid://j17e5jpt35rx" path="res://audio/negative_beeps-6008.mp3" id="5_j7fj6"]
+[ext_resource type="AudioStream" uid="uid://crfupl8hw70oc" path="res://audio/bgm ingame.mp3" id="9_m7m6i"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_op4il"]
 frames = 3
@@ -234,9 +235,14 @@ stream = ExtResource("4_ytyt1")
 [node name="wrong" type="AudioStreamPlayer" parent="TextureRect"]
 stream = ExtResource("5_j7fj6")
 
+[node name="bgm" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("9_m7m6i")
+volume_db = -15.0
+
 [connection signal="timeout" from="TextureRect/GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="TextureRect/CustomerTimer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="TextureRect/Control/btn_1" to="." method="_on_btn_1_pressed"]
 [connection signal="pressed" from="TextureRect/Control/btn_0" to="." method="_on_btn_0_pressed"]
 [connection signal="pressed" from="TextureRect/Control/btn_submit" to="." method="_on_btn_submit_pressed"]
 [connection signal="pressed" from="TextureRect/Control/backspace" to="." method="_on_backspace_pressed"]
+[connection signal="finished" from="TextureRect/bgm" to="." method="_on_bgm_finished"]

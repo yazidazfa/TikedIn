@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://6t8w6pulidq7"]
+[gd_scene load_steps=8 format=3 uid="uid://6t8w6pulidq7"]
 
 [ext_resource type="Script" path="res://Script/main menu.gd" id="1_f4gl3"]
+[ext_resource type="AudioStream" uid="uid://ckiq7dyf17cyf" path="res://audio/main menu.mp3" id="2_bkmrs"]
 
 [sub_resource type="Animation" id="Animation_4sex4"]
 length = 0.001
@@ -343,8 +344,12 @@ offset_right = 870.0
 offset_bottom = 425.0
 text = "Hard"
 
+[node name="mainmenubgm" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("2_bkmrs")
+
 [connection signal="animation_finished" from="btn_transition" to="." method="_on_btn_transition_animation_finished"]
 [connection signal="pressed" from="TextureRect/mulai_btn" to="." method="_on_mulai_btn_pressed"]
 [connection signal="pressed" from="TextureRect/exit_btn" to="." method="_on_exit_btn_pressed"]
 [connection signal="pressed" from="TextureRect/easy_btn" to="." method="_on_easy_btn_pressed"]
 [connection signal="pressed" from="TextureRect/hard_btn" to="." method="_on_hard_btn_pressed"]
+[connection signal="finished" from="TextureRect/mainmenubgm" to="." method="_on_mainmenubgm_finished"]

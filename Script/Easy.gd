@@ -4,6 +4,7 @@ var karakter_pelanggan = ["res://Character/Man-1.png.png", "res://Character/bapa
 
 @onready var audio_correct = $TextureRect/correct
 @onready var audio_wrong = $TextureRect/wrong
+@onready var bgm = $TextureRect/bgm
 
 var pesanan_dan_kode = {
 	"Roller Coaster": {"kode": "0001", "harga": 50},
@@ -59,6 +60,7 @@ func _ready():
 	new_anim_player = $TextureRect/AnimationPlayer
 	sprite2d = $TextureRect/KangTiket
 	new_anim_player.play("kang tiket muncul")
+	bgm.play()
 
 func panggil_pelanggan_baru():
 	var karakter_acak = karakter_pelanggan[randi() % karakter_pelanggan.size()]
@@ -191,3 +193,7 @@ func _process(delta):
 	var minutes = time_left / 60
 	var seconds = time_left % 60
 	time_left_label.text = "Time Left: %d:%02d" % [minutes, seconds]
+
+
+func _on_bgm_finished():
+	bgm.play()

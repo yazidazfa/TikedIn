@@ -1,12 +1,14 @@
 extends Node
 
+@onready var bgm = $TextureRect/mainmenubgm
 var last_button_pressed = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$btn_transition.connect("animation_finished", Callable(self, "_on_transition_animation_finished"))
 	GlobalScore.reset_score()
-
+	bgm.play()
+	
 func _on_mulai_btn_pressed():
 	print("Loading another scene...")
 	$btn_transition.play("btn_transition")
@@ -48,3 +50,7 @@ func _on_transition_animation_finished(animation_name: String):
 			get_tree().change_scene_to_file(scene_path)
 		else:
 			print("Scene not found or not imported: ", scene_path)
+
+
+func _on_mainmenubgm_finished():
+	bgm.play()
