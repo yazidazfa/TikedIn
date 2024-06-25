@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dno3xayr4enuk"]
+[gd_scene load_steps=21 format=3 uid="uid://dno3xayr4enuk"]
 
 [ext_resource type="Script" path="res://Script/Easy.gd" id="1_y6kgp"]
 [ext_resource type="Texture2D" uid="uid://d4a11leryb74j" path="res://Character/abangx1 (2).png" id="2_2b5ae"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://612wp881a2jn" path="res://background/ingame/ingame 3.png" id="4_smi15"]
 [ext_resource type="AudioStream" uid="uid://ji0xgow2ji2g" path="res://audio/correct-aul.mp3" id="4_ytyt1"]
 [ext_resource type="AudioStream" uid="uid://j17e5jpt35rx" path="res://audio/negative_beeps-6008.mp3" id="5_j7fj6"]
+[ext_resource type="Theme" uid="uid://bqkl5vgl8t24r" path="res://Scene/button main meu.tres" id="6_j6x5y"]
 [ext_resource type="AudioStream" uid="uid://crfupl8hw70oc" path="res://audio/bgm ingame.mp3" id="9_m7m6i"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_op4il"]
@@ -189,6 +190,7 @@ offset_left = 945.0
 offset_top = 472.0
 offset_right = 1004.0
 offset_bottom = 531.0
+theme = ExtResource("6_j6x5y")
 text = "1"
 
 [node name="btn_0" type="Button" parent="TextureRect/Control"]
@@ -197,6 +199,7 @@ offset_left = 869.0
 offset_top = 472.0
 offset_right = 928.0
 offset_bottom = 531.0
+theme = ExtResource("6_j6x5y")
 text = "0"
 
 [node name="btn_submit" type="Button" parent="TextureRect/Control"]
@@ -205,6 +208,7 @@ offset_left = 869.0
 offset_top = 555.0
 offset_right = 1004.0
 offset_bottom = 605.0
+theme = ExtResource("6_j6x5y")
 text = "submit"
 
 [node name="backspace" type="Button" parent="TextureRect/Control"]
@@ -213,6 +217,7 @@ offset_left = 1041.0
 offset_top = 512.0
 offset_right = 1100.0
 offset_bottom = 571.0
+theme = ExtResource("6_j6x5y")
 text = "⌫"
 
 [node name="CustomerContainer" type="Node2D" parent="TextureRect"]

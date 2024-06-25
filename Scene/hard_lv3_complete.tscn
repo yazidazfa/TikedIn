@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciui71jgkcscw"]
+[gd_scene load_steps=7 format=3 uid="uid://ciui71jgkcscw"]
 
 [ext_resource type="Script" path="res://Script/hard_lv3_complete.gd" id="1_h5imo"]
 [ext_resource type="Texture2D" uid="uid://uwlv7flxlmu1" path="res://background/game_complete/backgroiund game complete.jpg" id="2_rvwcc"]
+[ext_resource type="Theme" uid="uid://bqkl5vgl8t24r" path="res://Scene/button main meu.tres" id="3_0tjto"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pp4m5"]
 font_size = 28
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hhqe1"]
 font_size = 26
@@ -77,6 +79,9 @@ offset_left = 450.0
 offset_top = 408.0
 offset_right = 702.0
 offset_bottom = 473.0
+theme = ExtResource("3_0tjto")
 text = "Selesai"
+
+[node name="complete" type="AudioStreamPlayer" parent="TextureRect"]
 
 [connection signal="pressed" from="TextureRect/Control/Button" to="." method="_on_button_pressed"]

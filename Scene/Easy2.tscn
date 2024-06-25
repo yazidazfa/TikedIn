@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxk03otii1f5n"]
+[gd_scene load_steps=28 format=3 uid="uid://dxk03otii1f5n"]
 
 [ext_resource type="Script" path="res://Script/Easy2.gd" id="1_4wutj"]
 [ext_resource type="Texture2D" uid="uid://d4a11leryb74j" path="res://Character/abangx1 (2).png" id="2_a3t2d"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://612wp881a2jn" path="res://background/ingame/ingame 3.png" id="4_kpbpn"]
 [ext_resource type="Texture2D" uid="uid://cujqfmh5t2s5p" path="res://uang/2.png" id="5_1ujcd"]
 [ext_resource type="Texture2D" uid="uid://drgimc8is1itg" path="res://uang/5.png" id="6_7341a"]
+[ext_resource type="Theme" uid="uid://bqkl5vgl8t24r" path="res://Scene/button main meu.tres" id="6_y680d"]
 [ext_resource type="Texture2D" uid="uid://c5q5g6oq3p3v" path="res://uang/10.png" id="7_q18ao"]
 [ext_resource type="Texture2D" uid="uid://cbw5fm0nm6xgt" path="res://uang/20.png" id="8_s1sb6"]
 [ext_resource type="Texture2D" uid="uid://bg8he4yqo0gte" path="res://uang/50.png" id="9_10nbe"]
@@ -247,14 +248,16 @@ offset_left = 433.0
 offset_top = 558.0
 offset_right = 517.0
 offset_bottom = 599.0
+theme = ExtResource("6_y680d")
 text = "Reset"
 
 [node name="btn_1" type="Button" parent="TextureRect/Control"]
 layout_mode = 0
 offset_left = 945.0
 offset_top = 472.0
-offset_right = 1010.0
-offset_bottom = 532.0
+offset_right = 1004.0
+offset_bottom = 531.0
+theme = ExtResource("6_y680d")
 text = "1"
 
 [node name="btn_0" type="Button" parent="TextureRect/Control"]
@@ -263,14 +266,16 @@ offset_left = 869.0
 offset_top = 472.0
 offset_right = 928.0
 offset_bottom = 531.0
+theme = ExtResource("6_y680d")
 text = "0"
 
 [node name="btn_submit" type="Button" parent="TextureRect/Control"]
 layout_mode = 0
-offset_left = 874.0
+offset_left = 869.0
 offset_top = 555.0
-offset_right = 1007.0
+offset_right = 1004.0
 offset_bottom = 605.0
+theme = ExtResource("6_y680d")
 text = "submit"
 
 [node name="backspace" type="Button" parent="TextureRect/Control"]
@@ -279,6 +284,7 @@ offset_left = 1041.0
 offset_top = 512.0
 offset_right = 1103.0
 offset_bottom = 574.0
+theme = ExtResource("6_y680d")
 text = "⌫"
 
 [node name="CustomerContainer" type="Node2D" parent="TextureRect"]

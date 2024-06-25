@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwho85m5yrcsq"]
+[gd_scene load_steps=5 format=3 uid="uid://bwho85m5yrcsq"]
 
 [ext_resource type="Script" path="res://Script/Guide2.gd" id="1_2rnsp"]
+[ext_resource type="Texture2D" uid="uid://dwlqgq258bd2p" path="res://background/guide/Guide.jpg" id="2_etbh1"]
 [ext_resource type="Texture2D" uid="uid://d4a11leryb74j" path="res://Character/abangx1 (2).png" id="2_krg6l"]
+[ext_resource type="Theme" uid="uid://bqkl5vgl8t24r" path="res://Scene/button main meu.tres" id="3_0nbsl"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_2rnsp")
@@ -12,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_etbh1")
 
 [node name="Button" type="Button" parent="TextureRect"]
 layout_mode = 1
@@ -21,47 +24,48 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -90.5
-offset_top = -135.0
+offset_top = -123.0
 offset_right = 90.5
-offset_bottom = -83.0
+offset_bottom = -71.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_0nbsl")
 text = "Mulai"
 
 [node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
 texture_filter = 1
-position = Vector2(916, 286)
+position = Vector2(916, 379)
 scale = Vector2(4.68359, 4.68359)
 texture = ExtResource("2_krg6l")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TextureRect"]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 80.0
-offset_right = 1067.0
-offset_bottom = 499.0
+offset_left = 138.83
+offset_top = 208.0
+offset_right = 1018.3
+offset_bottom = 507.665
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_0nbsl")
 bbcode_enabled = true
-text = "[center][b][u]Panduan Permainan Hari Kedua[/u][/b][/center]
+text = "[center][color=#000000][u]Panduan Permainan Hari Kedua[/u][/color][/center]
+
+[color=#000000]Cara Bermain:[/color]
+[color=#000000]- Tekan tombol yang sesuai dengan kode pesanan pelanggan.[/color]
+[color=#000000]- Setiap pesanan yang benar akan menambah skor Anda.[/color]
+[color=#000000]- Anda memiliki waktu terbatas untuk memenuhi pesanan sebanyak mungkin.[/color]
+[color=#000000]- Pelanggan akan memberikan uang lebih. Berikan Kembalian yang sesuai.[/color]
+
+[color=#000000]Instruksi Khusus:[/color]
+[color=#000000]- Gunakan tombol 0 dan 1 untuk memasukkan kode.[/color]
+[color=#000000]- Tekan tombol backspace untuk menghapus satu karakter dari input.[/color]
+[color=#000000]- Tekan gambar uang untuk memasukkan nominal uang kembalian.[/color]
+[color=#000000]- Tekan tombol submit untuk memproses pesanan.[/color]
 
 
-[b]Cara Bermain:[/b]
-- Tekan tombol yang sesuai dengan kode pesanan pelanggan.
-- Setiap pesanan yang benar akan menambah skor Anda.
-- Anda memiliki waktu terbatas untuk memenuhi pesanan sebanyak mungkin.
-- Pelanggan akan memberikan uang lebih. Berikan Kembalian yang sesuai.
-
-[b]Instruksi Khusus:[/b]
-- Gunakan tombol 0 dan 1 untuk memasukkan kode.
-- Tekan tombol backspace untuk menghapus satu karakter dari input.
-- Tekan gambar uang untuk memasukkan nominal uang kembalian.
-- Tekan tombol submit untuk memproses pesanan.
-
-
-[center][b]Semoga Beruntung![/b][/center]"
+[center][color=#000000]Semoga Beruntung![/color][/center]"
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]
