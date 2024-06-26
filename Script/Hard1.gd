@@ -101,6 +101,7 @@ func proses_pesanan(barang_diberikan):
 		$TextureRect/Uang.visible = false
 		order_label.visible = false  # Hide the OrderLabel
 		is_animating = true
+		$TextureRect/CustomerTimer.stop()
 		audio_correct.play()
 		# Tambahkan logika untuk menangani pesanan yang benar di sini
 	else:
@@ -112,6 +113,7 @@ func proses_pesanan(barang_diberikan):
 		$TextureRect/Uang.visible = false
 		order_label.visible = false  # Hide the OrderLabel
 		is_animating = true
+		$TextureRect/CustomerTimer.stop()
 		audio_wrong.play()
 		# Tambahkan logika untuk menangani pesanan yang salah di sini
 

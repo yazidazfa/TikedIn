@@ -115,6 +115,7 @@ func proses_pesanan(barang_diberikan):
 		
 	anim_player.play("Move out")
 	$TextureRect/Uang.visible = false
+	$TextureRect/CustomerTimer.stop()
 	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true
 	input_money_label.visible = false

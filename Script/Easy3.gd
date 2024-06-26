@@ -112,8 +112,8 @@ func proses_pesanan(barang_diberikan):
 		audio_wrong.play()
 		
 	update_score_label()  # Update the score display
-		
 	anim_player.play("Move out")
+	$TextureRect/CustomerTimer.stop()
 	$TextureRect/Uang.visible = false
 	order_label.visible = false  # Hide the OrderLabel
 	is_animating = true
